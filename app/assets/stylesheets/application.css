@@ -20,14 +20,14 @@ body {
 
   /* background-color: lightgrey; */
   font-family: garamond;
-  background-color: #E8ECF1
+  /* background-color: #E8ECF1 */
 }
 h1 {
-  color: #4D9F93;
+  /* color: #4D9F93; */
 }
 
 .recipe-pane {
-  border-color: #7393A7;
+  /* border-color: #7393A7; */
   /* background-color: #FFFFFF; */
 
   border-width: 16px;
@@ -38,11 +38,11 @@ h1 {
 
 }
 .description {
-  font-size: 10px;
+  /* font-size: 12px; */
 }
 .top-bar{
-  background-color: #6C737E;
+  /* background-color: #6C737E; */
 }
 .right{
-  background-color: #6C737E;
+  /* background-color: #6C737E; */
 }
