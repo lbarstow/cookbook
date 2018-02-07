@@ -31,7 +31,7 @@ RSpec.describe Recipe, type: :model do
   end
   it "requires an author id" do
     user = FactoryBot.create(:user)
-    recipe_1 = Recipe.new(body: "I'm a body!! YAY!", body: "I'm a body!! YAY!")
+    recipe_1 = Recipe.new(title: "I'll Say the Name", body: "I'm a body!! YAY!")
     recipe_2 = Recipe.new(title: "I'll Say the Name", body: "I'm a body!! YAY!", author_id: user.id)
     expect(recipe_1).to_not be_valid
     expect(recipe_1.errors[:author]).to_not be_blank
