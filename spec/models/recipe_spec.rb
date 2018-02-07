@@ -37,6 +37,5 @@ RSpec.describe Recipe, type: :model do
     expect(recipe_1.errors[:author]).to_not be_blank
     expect(recipe_2).to be_valid
     expect(recipe_2.errors[:author]).to be_blank
-
   end
 end
