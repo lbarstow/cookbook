@@ -29,7 +29,7 @@ h1 {
 .recipe-pane {
   /* border-color: #7393A7; */
   /* background-color: #FFFFFF; */
-
+  border-color: #607D8B;
   border-width: 16px;
   border-style: solid;
   /* border-color: #4D9F93; */
@@ -45,4 +45,11 @@ h1 {
 }
 .right{
   /* background-color: #6C737E; */
+}
+.tab{
+  background-color: #90A4AE;
+  border-radius: 8px;
+}
+.tab.selected {
+  background-color: #607D8B;
 }

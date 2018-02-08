@@ -1,17 +1,16 @@
 import React from 'react';
 
 const RecipeShowPane= (props) =>{
-  let formattedBody = props.body
+
   // need to put in  a better way to format my body
 
-
   return(
-    <div>
+    <div className="recipe-pane">
       <h4>{props.title}</h4>
       <p>Makes: {props.servings}</p>
       <p>From: {props.source}</p>
       <p>{props.description}</p>
-      <pre>{props.body}</pre>
+      <p>{props.body}</p>
       <span>Added on {props.date}</span>
     </div>
   );
