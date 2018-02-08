@@ -5,16 +5,23 @@ class RecipeShowContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      original: {},
-      variations: [],
-      title: '',
-      body: '',
+      originalID: {},
+      recipes: [],
+      selectedId: null,
+      currentRecipe: {title: '',
+                      description: '',
+                    body: '',
+                    servings_made: '',
+                    source: '',
+                    date: '',
+                    author: ''}
+
 
     };
   }
   selectedRecipe() {
-    return this.state.restaurants.find((restaurant) =>
-      (restaurant.id === this.state.selectedId)
+    return this.state.recipes.find((recipe) =>
+      (recipe.id === this.state.selectedId)
     )
   }
   componentDidMount(){
@@ -29,30 +36,33 @@ class RecipeShowContainer extends Component {
         throw(error);
       }
     }).then(responseBody => {
+      let recipes = Array.from(responseBody.recipe.allrecipes);
+      recipes.unshift(responseBody.recipe.original);
 
       this.setState({
-        original: responseBody.recipe,
-        variations: responseBody.variations,
-        title: responseBody.recipe.title,
-        body: responseBody.recipe.body
-
+        originalID: id,
+        recipes: recipes,
+        selectedId: parseInt(id),
+        currentRecipe: recipes[0]
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render(){
+    console.log(this.state.recipes)
+    console.log(this.state.currentRecipe)
     let id = document.getElementById('show').getAttribute('data-id');
     return(
       <div className="recipe-show-pane">
         <RecipeShowPane
-          title={this.state.original.title}
-          servings={this.state.original.servings_made}
-          body={this.state.original.body}
-          servings={this.state.original.servings_made}
-          description={this.state.original.description}
-          source={this.state.original.source}
-          date={this.state.original.created_at}
+          title={this.state.currentRecipe.title}
+          servings={this.state.currentRecipe.servings_made}
+          body={this.state.currentRecipe.body}
+          description={this.state.currentRecipe.description}
+          source={this.state.currentRecipe.source}
+          date={this.state.currentRecipe.date}
+          author={this.state.currentRecipe.author}
         />
       </div>
     )
