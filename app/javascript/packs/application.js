@@ -10,17 +10,15 @@
 console.log('Hello World from Webpacker')
 import React from 'react'
 import ReactDOM from 'react-dom'
+import RecipeShowContainer from '../react/containers/RecipeShowContainer'
 
+let show = document.getElementById('show');
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
-let useTest = false;
-if ( useTest){
+if (show){
   document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
-      <Hello name="React" />,
-      document.body.appendChild(document.createElement('div')),
+      <RecipeShowContainer/>,
+      document.getElementById('show')
     )
   })
 }

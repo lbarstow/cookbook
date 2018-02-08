@@ -1,4 +1,4 @@
-<div class = "recipe-pane columns small-7">
+<!-- <div class = "recipe-pane columns small-7">
   <h4><%=@recipe.title%></h4>
   <% if @recipe.source.present? %>
    <p>Source: <%=@recipe.source%></p>
@@ -6,5 +6,16 @@
   <% if @recipe.description.present? %>
    <p class="description"><%=@recipe.description%></p>
   <%end%>
+  <% if @recipe.servings_made.present? %>
+   <p class="servings"><%=@recipe.servings_made%></p>
+  <%end%>
   <p><%=simple_format(@recipe.body)%></p>
 </div>
+<div>
+  <ul>
+    <%@variations.each do |variation|%>
+      <li><%=link_to variation.title, recipe_path(variation)%></li>
+    <%end%>
+  </ul>
+</div> -->
+<div id="show" data-id=<%= @id %>></div>
