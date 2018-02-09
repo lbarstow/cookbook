@@ -33,11 +33,11 @@ class RecipeShowContainer extends Component {
   }
   addVariation(event){
     event.preventDefault();
-    console.log("will add variation")
+    alert("I'll let you add a new variation");
   }
   editVariation(event){
     event.preventDefault();
-    console.log("will edit this variation")
+    alert("I'll let you edit this version");
   }
   //called when a VariationTab is clicked. finds id and recipe associated with
   //that tab and changes state accordingly
@@ -76,7 +76,7 @@ class RecipeShowContainer extends Component {
 
   render(){
     let id = document.getElementById('show').getAttribute('data-id');
-
+    console.log(this.state.currentRecipe)
     let tabs = this.state.recipes.map((recipe) => {
       return(
         <VariationTab
@@ -99,13 +99,13 @@ class RecipeShowContainer extends Component {
             date={this.state.currentRecipe.date}
             author={this.state.currentRecipe.author}
           />
-          <div className="variation-button" onClick={this.addVariation}>
+          <button className="variation-button" onClick={this.addVariation}>
             Add A Variation
-          </div>
+          </button>
           {this.state.currentRecipe.author_id === this.state.uID &&
-            <div className="variation-button" onClick={this.editVariation}>
+            <button className="variation-button" onClick={this.editVariation}>
             Edit this Version
-          </div>}
+          </button>}
         </div>
         <div className="banana">
         {tabs}
