@@ -3,13 +3,7 @@ class Api::V1::RecipesController < ApplicationController
 
   def show
     recipe = Recipe.find(params[:id])
-    variations = recipe.variations
-    current = @current_user
-    puts "current"
-    puts current.class
-    puts variations.class
+    puts recipe.body
     render json: recipe, serializer: RecipeShowSerializer
-
-
   end
 end
