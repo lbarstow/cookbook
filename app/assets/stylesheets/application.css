@@ -25,16 +25,21 @@ body {
 h1 {
   /* color: #4D9F93; */
 }
+.recipe-show-contianer{
+  display: flex;
+  flex-direction: row;
 
-.recipe-pane {
+}
+.recipe-show-pane {
   /* border-color: #7393A7; */
   /* background-color: #FFFFFF; */
-
+  border-color: #607D8B;
   border-width: 16px;
   border-style: solid;
   /* border-color: #4D9F93; */
   border-radius: 8px;
-  padding: 5px;
+  padding: 25px;
+  display: inline-block;
 
 }
 .description {
@@ -45,4 +50,20 @@ h1 {
 }
 .right{
   /* background-color: #6C737E; */
+}
+.banana{
+  display: inline-block;
+}
+.tab{
+  background-color: #90A4AE;
+
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px
+
+}
+.tab.selected {
+  background-color: #607D8B;
+}
+.variation-button{
+  background-color: #607D8B
 }
