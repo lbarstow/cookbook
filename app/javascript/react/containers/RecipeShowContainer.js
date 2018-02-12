@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import RecipeShowPane from '../components/RecipeShowPane';
+import RecipeVariationForm from '../components/RecipeVariationForm';
 import VariationTab from '../components/VariationTab';
 
 class RecipeShowContainer extends Component {
@@ -16,14 +17,17 @@ class RecipeShowContainer extends Component {
                     source: '',
                     date: '',
                     author: ''},
-      readOnly:false,
+      readOnly:true,
       uID: 0
 
 
     };
 
-    this.recipeById = this.recipeById.bind(this)
-    this.tabClick = this.tabClick.bind(this)
+    this.recipeById = this.recipeById.bind(this);
+    this.addVariation = this.addVariation.bind(this);
+    this.editVariation = this.editVariation.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.tabClick = this.tabClick.bind(this);
   }
   //takes in an integer, returns the recipe from the this.recipes.state with an id that matches the input
   recipeById(id) {
@@ -33,10 +37,19 @@ class RecipeShowContainer extends Component {
   }
   addVariation(event){
     event.preventDefault();
+    this.setState({readOnly: false});
+
     alert("I'll let you add a new variation");
   }
   editVariation(event){
     event.preventDefault();
+    this.setState({readOnly: true});
+    alert("I'll let you edit this version");
+  }
+  handleFormSubmit(event){
+    event.preventDefault();
+    console.log("submit")
+    this.setState({readOnly: true});
     alert("I'll let you edit this version");
   }
   //called when a VariationTab is clicked. finds id and recipe associated with
@@ -77,6 +90,45 @@ class RecipeShowContainer extends Component {
   render(){
     let id = document.getElementById('show').getAttribute('data-id');
     console.log(this.state.currentRecipe)
+    let showPane;
+    if (this.state.readOnly){
+      showPane=
+      <div className="recipe-show-pane">
+        <RecipeShowPane
+          title={this.state.currentRecipe.title}
+          servings={this.state.currentRecipe.servings_made}
+          body={this.state.currentRecipe.body}
+          description={this.state.currentRecipe.description}
+          source={this.state.currentRecipe.source}
+          date={this.state.currentRecipe.date}
+          author={this.state.currentRecipe.author}
+        />
+        <button className="variation-button" onClick={this.addVariation}>
+          Add A Variation
+        </button>
+        {this.state.currentRecipe.author_id === this.state.uID &&
+          <button className="variation-button" onClick={this.editVariation}>
+          Edit this Version
+        </button>}
+      </div>
+
+    }else{
+      showPane=
+      <div className="recipe-show-pane">
+      <RecipeVariationForm
+        title={this.state.currentRecipe.title}
+        servings={this.state.currentRecipe.servings_made}
+        body={this.state.currentRecipe.body}
+        description={this.state.currentRecipe.description}
+        source={this.state.currentRecipe.source}
+        date={this.state.currentRecipe.date}
+        author={this.state.currentRecipe.author}
+        onClick={this.handleFormSubmit}
+        handleChange={this.editVariation}
+      />
+      </div>
+
+    }
     let tabs = this.state.recipes.map((recipe) => {
       return(
         <VariationTab
@@ -89,24 +141,7 @@ class RecipeShowContainer extends Component {
     })
     return(
       <div className="recipe-show-container">
-        <div className="recipe-show-pane">
-          <RecipeShowPane
-            title={this.state.currentRecipe.title}
-            servings={this.state.currentRecipe.servings_made}
-            body={this.state.currentRecipe.body}
-            description={this.state.currentRecipe.description}
-            source={this.state.currentRecipe.source}
-            date={this.state.currentRecipe.date}
-            author={this.state.currentRecipe.author}
-          />
-          <button className="variation-button" onClick={this.addVariation}>
-            Add A Variation
-          </button>
-          {this.state.currentRecipe.author_id === this.state.uID &&
-            <button className="variation-button" onClick={this.editVariation}>
-            Edit this Version
-          </button>}
-        </div>
+          {showPane}
         <div className="banana">
         {tabs}
         </div>
