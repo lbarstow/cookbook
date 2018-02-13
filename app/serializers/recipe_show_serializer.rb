@@ -12,7 +12,6 @@ class RecipeShowSerializer < ActiveModel::Serializer
   end
 
   def user
-    uid= scope.id.to_i
-    return uid
+    return current_user.id.to_i
   end
 end
