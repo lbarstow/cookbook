@@ -8,7 +8,7 @@ class RecipeSerializer < ActiveModel::Serializer
     return "Deleted User"
   end
   def date
-    date = object.created_at.strftime("%B %e, %Y")
+    date = object.created_at.localtime.strftime("%B %e, %Y")
     return "#{date}"
   end
 
