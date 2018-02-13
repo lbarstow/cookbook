@@ -51,8 +51,9 @@ The bread lasts best if it’s simply placed cut-side down, rather then enclosed
 t to 1/3 t in the smaller recipe and from 1/3 t to ½ t in the larger one. If you really get involved in making bread,
 considering getting a two-pound package of instant yeast (about $5) at BJ’s Wholesale Club and storing it in 8
 oz canning jars in the freezer. It should last for years.", source: "Tom Barstow, July 2015", author_id: 2)
-  Recipe.create(parent_recipe_id: 4, title:"Dried Fruit", body:"4 oz (4/5 c) dried cherries, mixed berries, or other dried fruit
-  \n3 oz (3/8 c) water\n11 oz (1-3/8 c) water (reduced amount)\nSimmer the berries in the small amount of water for about 15 minutes, cool them, and add them to the
+  Recipe.create(parent_recipe_id: 4, title:"Dried Fruit",
+    body:"4 oz (4/5 c) dried cherries, mixed berries, or other dried fruit\n3 oz (3/8 c) water\n11 oz (1-3/8 c) water (reduced amount)
+    \nSimmer the berries in the small amount of water for about 15 minutes, cool them, and add them to the
 dry ingredients. Toss a bit to separate the berries so they don’t clump.
 This makes terrific toast, too.", source: "Tom Barstow", author_id: 2)
   Recipe.create(parent_recipe_id: 4, title: "Garlic", body: "1 oz (5 cloves) garlic

@@ -31,9 +31,9 @@ class RecipeShowContainer extends Component {
     this.editVariation = this.editVariation.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.tabClick = this.tabClick.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.submitEdit = this.submitEdit.bind(this);
   }
-  //takes in an integer, returns the recipe from the this.recipes.state with an id that matches the input
+  //takes in an integer, sets currentRecipe in state to be a copy of
   recipeById(id) {
     let recipe = this.state.recipes.find((recipe) =>
       (recipe.id === id)
@@ -50,7 +50,6 @@ class RecipeShowContainer extends Component {
     event.preventDefault();
     this.setState({readOnly: false});
     this.setState({edit: true});
-
   }
   handleChange(event){
     event.preventDefault();
@@ -68,7 +67,6 @@ class RecipeShowContainer extends Component {
 
   handleFormSubmit(event){
     event.preventDefault();
-
     let formPayload =
       {body: this.state.currentRecipe.body,
       title: this.state.currentRecipe.title,
@@ -105,9 +103,9 @@ class RecipeShowContainer extends Component {
       })
       .then(response => {
         this.setState({ errors: [] });
-        let newrecipes = this.state.recipes.concat(response.recipe);
+        let newrecipes = this.state.recipes.concat(JSON.parse(JSON.stringify(response.recipe)));
         this.setState({recipes: newrecipes});
-        this.setState({currentRecipe: response.recipe});
+        this.setState({currentRecipe: JSON.parse(JSON.stringify(response.recipe))});
         this.setState({selectedId: parseInt(response.recipe.id)});
         this.setState({changes: {}});
         this.setState({readOnly: true});
@@ -118,7 +116,7 @@ class RecipeShowContainer extends Component {
     }
   }
 
-  handleEdit(event){
+  submitEdit(event){
     event.preventDefault();
     let formPayload = this.state.changes;
     let errors = [];
@@ -144,8 +142,13 @@ class RecipeShowContainer extends Component {
       })
       .then(response => {
         console.log(response.recipe);
+        let index = this.state.recipes.findIndex(item => item.id === response.recipe.id);
+        let updatedRecipes = this.state.recipes;
+        updatedRecipes[index] = JSON.parse(JSON.stringify(response.recipe));
+
         this.setState({errors: []});
-        this.setState({currentRecipe: response.recipe});
+        this.setState({currentRecipe: JSON.parse(JSON.stringify(response.recipe))});
+        this.setState({recipes: updatedRecipes});
         this.setState({selectedId: parseInt(response.recipe.id)});
         this.setState({changes: {}});
         this.setState({readOnly: true});
@@ -162,7 +165,6 @@ class RecipeShowContainer extends Component {
   tabClick(event) {
     event.preventDefault()
     let id = parseInt(event.target.id);
-
     this.recipeById(id);
     this.setState({selectedId: id})
   }
@@ -224,7 +226,7 @@ class RecipeShowContainer extends Component {
       let changeFunct = this.handleFormSubmit;
       let text = "Add Variation"
       if (this.state.edit){
-        changeFunct = this.handleEdit;
+        changeFunct = this.submitEdit;
         text = "Submit Edit"
       }
       showPane=
