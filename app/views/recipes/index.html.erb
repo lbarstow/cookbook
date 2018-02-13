@@ -1,8 +1,11 @@
 <h1>Recipes</h1>
 <div>
-  <ul>
+  <ul className="index-list">
     <%@recipes.each do |recipe|%>
-      <li><%=link_to recipe.title, recipe_path(recipe)%></li>
+      <li><%= link_to(recipe_path(recipe)) do %>
+        <div><%=recipe.title%></div>
+      <% end %>
+      </li>
     <%end%>
   </ul>
   <%= link_to 'Add a Recipe', new_recipe_path %>
