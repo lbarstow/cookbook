@@ -57,6 +57,7 @@ h1 {
 }
 .tab{
   background-color: #90A4AE;
+  padding: 5px;
 
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px
