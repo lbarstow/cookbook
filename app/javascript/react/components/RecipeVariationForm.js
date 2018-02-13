@@ -9,7 +9,6 @@ const RecipeVariationForm = (props) => {
         name="title"
         value={props.title}
         onChange={props.handleChange}
-
         />
       <label>Servings Made:</label>
       <input
@@ -18,24 +17,30 @@ const RecipeVariationForm = (props) => {
         value={props.servings}
         onChange={props.handleChange}
       />
-      <input
-        type="text"
-        name="source"
-        value={props.source}
-        onChange={props.handleChange}
-      />
-      <input
-        type="text"
-        name="description"
-        value={props.description}
-        onChange={props.handleChange}
-      />
+      <label>
+        Source:
+        <input
+          type="text"
+          name="source"
+          value={props.source}
+          onChange={props.handleChange}
+        />
+      </label>
+      <label>
+        Description:
+        <input
+          type="text"
+          name="description"
+          value={props.description}
+          onChange={props.handleChange}
+        />
+      </label>
       <textarea
         name="body"
         value={props.body}
         onChange={props.handleChange}
       />
-      <input type="submit" value="Add Variation" />
+      <input type="submit" value={props.buttonText} />
     </form>
   )
 }

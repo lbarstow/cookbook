@@ -5,7 +5,6 @@ class RecipeShowSerializer < ActiveModel::Serializer
     variations = object.variations
     parsed = ActiveModel::Serializer::CollectionSerializer.new(
     variations, each_serializer: RecipeSerializer)
-
   end
 
   def original
@@ -13,11 +12,7 @@ class RecipeShowSerializer < ActiveModel::Serializer
   end
 
   def user
-    puts "scope"
     uid= scope.id.to_i
     return uid
   end
-
-
-
 end

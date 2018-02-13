@@ -18,16 +18,20 @@ class RecipeShowContainer extends Component {
                     date: '',
                     author: ''},
       readOnly:true,
-      uID: 0
+      edit: false,
+      uID: 0,
+      errors: [],
+      changes: {}
 
 
     };
-
     this.recipeById = this.recipeById.bind(this);
     this.addVariation = this.addVariation.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.editVariation = this.editVariation.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.tabClick = this.tabClick.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
   //takes in an integer, returns the recipe from the this.recipes.state with an id that matches the input
   recipeById(id) {
@@ -38,20 +42,127 @@ class RecipeShowContainer extends Component {
   addVariation(event){
     event.preventDefault();
     this.setState({readOnly: false});
-
-    alert("I'll let you add a new variation");
   }
   editVariation(event){
+    // event.preventDefault();
+    // let recipe = this.state.currentRecipe;
+    // let field = event.target.name;
+    // let val = event.target.value;
+    // //used for storing the contents of each field- unchanged or not
+    // recipe[field] = val;
+    // this.setState({currentRecipe: recipe});
+    // //used for storing only the fields that have been changed
+    // let newChange = this.state.changes;
+    // newChange[field] = val;
+    // this.setState({changes: newChange});
+    // this.setState({readOnly: false});
     event.preventDefault();
-    this.setState({readOnly: true});
-    alert("I'll let you edit this version");
+    this.setState({readOnly: false});
+    this.setState({edit: true});
+
   }
+  handleChange(event){
+    event.preventDefault();
+    let recipe = this.state.currentRecipe;
+    let field = event.target.name;
+    let val = event.target.value;
+    //used for storing the contents of each field- unchanged or not
+    recipe[field] = val;
+    this.setState({currentRecipe: recipe});
+    //used for storing only the fields that have been changed
+    let newChange = this.state.changes;
+    newChange[field] = val;
+    this.setState({changes: newChange});
+  }
+
   handleFormSubmit(event){
     event.preventDefault();
-    console.log("submit")
-    this.setState({readOnly: true});
-    alert("I'll let you edit this version");
+
+    let formPayload =
+      {body: this.state.currentRecipe.body,
+      title: this.state.currentRecipe.title,
+      description: this.state.currentRecipe.description,
+      servings_made: this.state.currentRecipe.servings_made,
+      source: this.state.currentRecipe.source,
+      author_id: parseInt(this.state.uID),
+      parent_recipe_id: this.state.originalID
+    };
+    let errors = [];
+    if (formPayload.body === null || formPayload.body === ''){
+      errors.push("Your recipe needs a body")
+    }
+
+    if (errors.length === 0) {
+      //add correct route when i figure out how to get it
+      fetch(`/api/v1/recipes`, {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify(formPayload),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => {
+        this.setState({ errors: [] });
+        let newrecipes = this.state.recipes.concat(response.recipe);
+        this.setState({recipes: newrecipes});
+        this.setState({currentRecipe: response.recipe});
+        this.setState({selectedId: parseInt(response.recipe.id)});
+        this.setState({changes: {}});
+        this.setState({readOnly: true});
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    } else {
+      this.setState({ errors: errors})
+    }
   }
+
+  handleEdit(event){
+    event.preventDefault();
+    let formPayload = this.state.changes;
+    let errors = [];
+    let id = this.state.selectedId;
+    if (formPayload.body === null || formPayload.body === ''){
+      errors.push("Your recipe needs a body")
+    }
+    if (errors.length === 0) {
+      fetch(`/api/v1/recipes/${id}`, {
+        credentials: 'same-origin',
+        method: 'PATCH',
+        body: JSON.stringify(formPayload),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => {
+        console.log(response.recipe);
+        this.setState({errors: []});
+        this.setState({currentRecipe: response.recipe});
+        this.setState({selectedId: parseInt(response.recipe.id)});
+        this.setState({changes: {}});
+        this.setState({readOnly: true});
+        this.setState({edit: false});
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    } else {
+      this.setState({ errors: errors})
+    }
+  }
+
   //called when a VariationTab is clicked. finds id and recipe associated with
   //that tab and changes state accordingly
   tabClick(event) {
@@ -61,6 +172,7 @@ class RecipeShowContainer extends Component {
     let selectedVariaiton = this.recipeById(id);
     this.setState({selectedId: id, currentRecipe: selectedVariaiton})
   }
+
   componentDidMount(){
     let id = document.getElementById('show').getAttribute('data-id');
     fetch(`/api/v1/recipes/${id}`, {credentials: 'same-origin'})
@@ -86,7 +198,6 @@ class RecipeShowContainer extends Component {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-
   render(){
     let id = document.getElementById('show').getAttribute('data-id');
     console.log(this.state.currentRecipe)
@@ -113,23 +224,33 @@ class RecipeShowContainer extends Component {
       </div>
 
     }else{
+      let changeFunct = this.handleFormSubmit;
+      let text = "Add Variation"
+      if (this.state.edit){
+        changeFunct = this.handleEdit;
+        text = "Submit Edit"
+      }
+      //add logic inside this to choose onSubmit function so this code is reusable for edit and create
       showPane=
-      <div className="recipe-show-pane">
-      <RecipeVariationForm
-        title={this.state.currentRecipe.title}
-        servings={this.state.currentRecipe.servings_made}
-        body={this.state.currentRecipe.body}
-        description={this.state.currentRecipe.description}
-        source={this.state.currentRecipe.source}
-        date={this.state.currentRecipe.date}
-        author={this.state.currentRecipe.author}
-        onClick={this.handleFormSubmit}
-        handleChange={this.editVariation}
-      />
-      </div>
+        <div className="recipe-show-pane">
+        <RecipeVariationForm
+          title={this.state.currentRecipe.title}
+          servings={this.state.currentRecipe.servings_made}
+          body={this.state.currentRecipe.body}
+          description={this.state.currentRecipe.description}
+          source={this.state.currentRecipe.source}
+          date={this.state.currentRecipe.date}
+          author={this.state.currentRecipe.author}
+          onClick={changeFunct}
+          handleChange={this.handleChange}
+          buttonText={text}
+        />
+        </div>
 
     }
-    let tabs = this.state.recipes.map((recipe) => {
+    let recipes = this.state.recipes
+    let tabs = recipes.map((recipe) => {
+
       return(
         <VariationTab
           title={recipe.title}
@@ -141,11 +262,10 @@ class RecipeShowContainer extends Component {
     })
     return(
       <div className="recipe-show-container">
-          {showPane}
-        <div className="banana">
-        {tabs}
+        {showPane}
+        <div className="variation-tabs">
+          {tabs}
         </div>
-
       </div>
     )
   }

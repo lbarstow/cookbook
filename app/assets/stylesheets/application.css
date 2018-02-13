@@ -40,6 +40,7 @@ h1 {
   border-radius: 8px;
   padding: 25px;
   display: inline-block;
+  width: 80%;
 
 }
 .description {
@@ -51,7 +52,7 @@ h1 {
 .right{
   /* background-color: #6C737E; */
 }
-.banana{
+.variation-tabs{
   display: inline-block;
 }
 .tab{
