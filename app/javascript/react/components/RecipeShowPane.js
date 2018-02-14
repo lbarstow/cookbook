@@ -7,7 +7,7 @@ const RecipeShowPane= (props) =>{
   const hasServings = props.servings && props.servings.trim() !== "";
   const hasSource = props.source && props.source.trim() !== "";
 
-  //changes all \r\n line breaks to <br/> so that body can be displayed properly
+  //changes all \n line breaks to <br/> so that body can be displayed properly
   const body = props.body.split('\n').map((line, key) => {
     return <span key={key}>{line}<br/></span>});
 

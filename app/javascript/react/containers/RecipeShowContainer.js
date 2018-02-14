@@ -17,6 +17,7 @@ class RecipeShowContainer extends Component {
                     source: '',
                     date: '',
                     author: ''},
+
       readOnly:true,
       edit: false,
       uID: 0,
@@ -41,7 +42,7 @@ class RecipeShowContainer extends Component {
     let recipeCopy = JSON.parse(JSON.stringify(recipe));
     this.setState({currentRecipe: recipeCopy});
   }
-  
+
 
   cancelChange(){
     this.recipeById(this.state.selectedId)
@@ -60,9 +61,9 @@ class RecipeShowContainer extends Component {
 
   handleChange(event){
     event.preventDefault();
-    let recipe = this.state.currentRecipe;
     let field = event.target.name;
     let val = event.target.value;
+    let recipe = this.state.currentRecipe;
     //used for storing the contents of each field- unchanged or not
     recipe[field] = val;
     //used for storing only the fields that have been changed
