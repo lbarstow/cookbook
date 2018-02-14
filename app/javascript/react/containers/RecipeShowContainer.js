@@ -41,6 +41,7 @@ class RecipeShowContainer extends Component {
     let recipeCopy = JSON.parse(JSON.stringify(recipe));
     this.setState({currentRecipe: recipeCopy});
   }
+  
 
   cancelChange(){
     this.recipeById(this.state.selectedId)
@@ -54,8 +55,7 @@ class RecipeShowContainer extends Component {
 
   editVariation(event){
     event.preventDefault();
-    this.setState({readOnly: false});
-    this.setState({edit: true});
+    this.setState({readOnly: false, edit: true});
   }
 
   handleChange(event){
@@ -70,18 +70,12 @@ class RecipeShowContainer extends Component {
     let originalVal = this.state.recipes.find((item) =>
       (item.id === this.state.selectedId)
     )
-    console.log(originalVal)
-    console.log(val)
-    console.log(originalVal[field])
-
     if(val === originalVal[field]){
-      console.log("loop")
-      console.log(delete newChange[field])
+      delete newChange[field]
     }else{
       newChange[field] = val;
     }
-    this.setState({currentRecipe: recipe});
-    this.setState({changes: newChange});
+    this.setState({currentRecipe: recipe, changes: newChange});
   }
 
   handleFormSubmit(event){
@@ -94,8 +88,7 @@ class RecipeShowContainer extends Component {
       servings_made: this.state.currentRecipe.servings_made,
       source: this.state.currentRecipe.source,
       author_id: parseInt(this.state.uID),
-      parent_recipe_id: this.state.originalID
-    };
+      parent_recipe_id: this.state.originalID};
     let errors = [];
     if (formPayload.body === null || formPayload.body === ''){
       errors.push("Your recipe needs a body")
@@ -122,13 +115,10 @@ class RecipeShowContainer extends Component {
         }
       })
       .then(response => {
-        this.setState({ errors: [] });
-        let newrecipes = this.state.recipes.concat(JSON.parse(JSON.stringify(response.recipe)));
-        this.setState({recipes: newrecipes});
-        this.setState({currentRecipe: JSON.parse(JSON.stringify(response.recipe))});
-        this.setState({selectedId: parseInt(response.recipe.id)});
-        this.setState({changes: {}});
-        this.setState({readOnly: true});
+        let recipeRef = JSON.parse(JSON.stringify(response.recipe))
+        let newrecipes = this.state.recipes.concat(recipeRef);
+        this.setState({errors: [], recipes: newrecipes, currentRecipe: recipeRef,
+          selectedId: parseInt(recipeRef.id),changes: {}, readOnly: true});
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     } else {
@@ -223,12 +213,12 @@ class RecipeShowContainer extends Component {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-  render(){
-    let errorHTML = this.state.errors.map(error => {
-      return <li>{error}</li>
-    });
 
-    let id = document.getElementById('show').getAttribute('data-id');
+  render(){
+    console.log(this.state.currentRecipe)
+    let errorHTML = this.state.errors.map((error, index) => {
+      return <li key={index}>{error}</li>
+    });
 
     let showPane;
     if (this.state.readOnly){
