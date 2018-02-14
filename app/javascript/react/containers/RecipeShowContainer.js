@@ -91,6 +91,9 @@ class RecipeShowContainer extends Component {
       author_id: parseInt(this.state.uID),
       parent_recipe_id: this.state.originalID};
     let errors = [];
+    if (Object.keys(this.state.changes).length === 0){
+      errors.push("No Changes to Submit")
+    }
     if (formPayload.body === null || formPayload.body === ''){
       errors.push("Your recipe needs a body")
     }
@@ -164,7 +167,6 @@ class RecipeShowContainer extends Component {
         let index = this.state.recipes.findIndex(item => item.id === response.recipe.id);
         let updatedRecipes = this.state.recipes;
         updatedRecipes[index] = JSON.parse(JSON.stringify(response.recipe));
-
         this.setState({errors: []});
         this.setState({currentRecipe: JSON.parse(JSON.stringify(response.recipe))});
         this.setState({recipes: updatedRecipes});
