@@ -40,7 +40,8 @@ const RecipeVariationForm = (props) => {
         value={props.body}
         onChange={props.handleChange}
       />
-      <input type="submit" value={props.buttonText} />
+      <button type="submit"> {props.buttonText}</button>
+      <button type="button" onClick={props.cancel}>Cancel</button>
     </form>
   )
 }

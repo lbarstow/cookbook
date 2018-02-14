@@ -32,7 +32,9 @@ class RecipeShowContainer extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.tabClick = this.tabClick.bind(this);
     this.submitEdit = this.submitEdit.bind(this);
+    this.cancelChange = this.cancelChange.bind(this);
   }
+
   //takes in an integer, sets currentRecipe in state to be a copy of
   recipeById(id) {
     let recipe = this.state.recipes.find((recipe) =>
@@ -42,6 +44,10 @@ class RecipeShowContainer extends Component {
     this.setState({currentRecipe: recipeCopy});
   }
 
+  cancelChange(){
+    this.recipeById(this.state.selectedId)
+    this.setState({readOnly: true, edit: false})
+  }
   addVariation(event){
     event.preventDefault();
     this.setState({readOnly: false});
@@ -67,6 +73,7 @@ class RecipeShowContainer extends Component {
 
   handleFormSubmit(event){
     event.preventDefault();
+    console.log("submit")
     let formPayload =
       {body: this.state.currentRecipe.body,
       title: this.state.currentRecipe.title,
@@ -242,6 +249,7 @@ class RecipeShowContainer extends Component {
           onClick={changeFunct}
           handleChange={this.handleChange}
           buttonText={text}
+          cancel={this.cancelChange}
         />
         </div>
 
