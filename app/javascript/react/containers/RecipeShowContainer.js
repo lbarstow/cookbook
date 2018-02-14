@@ -70,16 +70,18 @@ class RecipeShowContainer extends Component {
     let originalVal = this.state.recipes.find((item) =>
       (item.id === this.state.selectedId)
     )
+    console.log(originalVal)
+    console.log(val)
+    console.log(originalVal[field])
 
     if(val === originalVal[field]){
-      delete newChange.field
-      console.log("no change")
+      console.log("loop")
+      console.log(delete newChange[field])
     }else{
       newChange[field] = val;
     }
     this.setState({currentRecipe: recipe});
     this.setState({changes: newChange});
-    console.log("change")
   }
 
   handleFormSubmit(event){
