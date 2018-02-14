@@ -260,10 +260,10 @@ class RecipeShowContainer extends Component {
     })
     return(
       <div className="recipe-show-container">
-        {showPane}
         <div className="variation-tabs">
           {tabs}
         </div>
+        {showPane}
       </div>
     )
   }

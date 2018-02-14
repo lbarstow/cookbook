@@ -12,7 +12,7 @@ const RecipeShowPane= (props) =>{
     return <span key={key}>{line}<br/></span>});
 
   return(
-    <div >
+    <div className="recipe-contents">
       <h4>{props.title}</h4>
       {hasSource && <span>From: {props.source}</span>}
       {hasServings && <span>Makes: {props.servings}</span>}
