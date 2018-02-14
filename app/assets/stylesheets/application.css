@@ -17,7 +17,7 @@
  */
 body {
   /* background-color: #E1E8E7; */
-
+  background-color: #DCE3E7;
   /* background-color: lightgrey; */
   font-family: garamond;
   /* background-color: #E8ECF1 */
@@ -27,13 +27,12 @@ h1 {
 }
 .recipe-show-contianer{
 
-  display: flex;
-  flex-direction: row;
 
 }
 .recipe-show-pane {
   /* border-color: #7393A7; */
   /* background-color: #FFFFFF; */
+  margin: auto;
   border-color: #607D8B;
   border-width: 16px;
   border-style: solid;
@@ -42,7 +41,12 @@ h1 {
   padding: 25px;
   display: inline-block;
   width: 80%;
+  background-color: #FFFFFF;
 
+
+}
+.recipe-contents{
+  background-color: #FFFFFF;
 }
 .description {
   /* font-size: 12px; */
@@ -53,11 +57,21 @@ h1 {
 .right{
   /* background-color: #6C737E; */
 }
+.variation-button{
+  background-color: #607D8B;
+  color: #000000;
+  margin: 5px;
+
+}
+.variation-button:hover {
+  background-color: #506874;
+  color: white;
+}
 .variation-tabs{
   margin-top: 20px;
 }
 .tab{
-  background-color: #90A4AE;
+  background-color: #FFFFFF;
   padding: 5px;
   display: inline;
   border-style: solid;
@@ -65,14 +79,24 @@ h1 {
   border-color: #607D8B;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px
-
 }
 .tab.selected {
   background-color: #607D8B;
 }
-.variation-button{
-  background-color: #607D8B
-}
 .index-list{
   list-style: none;
+}
+.index-tile{
+    border-color: #90A4AE;
+    background-color: #FFFFFF;
+}
+button{
+  background-color: #607D8B;
+  color: #000000;
+  margin: 5px;
+
+}
+button:hover{
+  background-color: #506874;
+  color: white;
 }
