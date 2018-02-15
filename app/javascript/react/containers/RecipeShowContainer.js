@@ -43,15 +43,14 @@ class RecipeShowContainer extends Component {
     this.setState({currentRecipe: recipeCopy});
   }
 
-
   cancelChange(){
     this.recipeById(this.state.selectedId)
-    this.setState({readOnly: true, edit: false, errors: []})
+    this.setState({readOnly: true, edit: false, errors: [], changes: {}})
   }
 
   addVariation(event){
     event.preventDefault();
-    this.setState({readOnly: false});
+    this.setState({readOnly: false, edit: false});
   }
 
   editVariation(event){
@@ -133,7 +132,6 @@ class RecipeShowContainer extends Component {
   submitEdit(event){
     console.log(this.state.changes);
     event.preventDefault();
-
     let formPayload = this.state.changes;
     let errors = [];
     let id = this.state.selectedId;
@@ -171,9 +169,7 @@ class RecipeShowContainer extends Component {
         this.setState({currentRecipe: JSON.parse(JSON.stringify(response.recipe))});
         this.setState({recipes: updatedRecipes});
         this.setState({selectedId: parseInt(response.recipe.id)});
-        this.setState({changes: {}});
-        this.setState({readOnly: true});
-        this.setState({edit: false});
+        this.setState({changes: {},readOnly: true,edit: false});
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     } else {
@@ -185,9 +181,11 @@ class RecipeShowContainer extends Component {
   //that tab and changes state accordingly
   tabClick(event) {
     event.preventDefault()
-    let id = parseInt(event.target.id);
-    this.recipeById(id);
-    this.setState({selectedId: id})
+    if(this.state.readOnly){
+      let id = parseInt(event.target.id);
+      this.recipeById(id);
+      this.setState({selectedId: id, changes: {}});
+    };
   }
 
   componentDidMount(){
@@ -256,7 +254,7 @@ class RecipeShowContainer extends Component {
       }
       showPane=
         <div className="recipe-show-pane">
-        {errorHTML.length >0 && <ul>{errorHTML}</ul>}
+        {errorHTML.length > 0 && <ul>{errorHTML}</ul>}
         <RecipeVariationForm
           title={this.state.currentRecipe.title}
           servings={this.state.currentRecipe.servings_made}
