@@ -46,7 +46,4 @@ const RecipeVariationForm = (props) => {
   )
 }
 
-
-
-
 export default RecipeVariationForm;
