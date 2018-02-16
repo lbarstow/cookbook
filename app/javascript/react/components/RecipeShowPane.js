@@ -14,9 +14,11 @@ const RecipeShowPane= (props) =>{
   return(
     <div className="recipe-contents">
       <h4>{props.title}</h4>
-      {hasSource && <span>From: {props.source}</span>}
-      {hasServings && <span>Makes: {props.servings}</span>}
-      {hasDescription && <p>Description: {props.description}</p>}
+      <div className="info-line">
+      {hasSource && <span><strong>From: </strong>{props.source}</span>}
+      {hasServings && <span><strong>Makes: </strong>{props.servings}</span>}
+      </div>
+      {hasDescription && <p><strong>Description: </strong>{props.description}</p>}
       <p>{body}</p>
       <span>Added on {props.date} by {props.author}</span>
     </div>

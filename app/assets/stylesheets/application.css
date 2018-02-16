@@ -22,32 +22,61 @@ body {
 }
 h1 {
   /* color: #4D9F93; */
+  text-align: center;
+
 }
 ul{
   list-style: none;
 }
+
 .recipe-show-contianer{
+  display: inline-block;
 
 
 }
+span{
+  padding-left: 4px;
+  padding-right: 4px;
+}
+button{
+  background-color: #607D8B;
+  color: #000000;
+  margin: 5px;
+
+}
+button:hover{
+  background-color: #506874;
+  color: white;
+}
+.button{
+  background-color: #607D8B;
+  color: #000000;
+  margin: 5px;
+
+}
+.button:hover{
+  background-color: #506874;
+  color: white;
+}
 .recipe-show-pane {
   /* border-color: #7393A7; */
-  /* background-color: #FFFFFF; */
-  margin: auto;
   border-color: #607D8B;
   border-width: 16px;
   border-style: solid;
   /* border-color: #4D9F93; */
-  border-radius: 8px;
+  border-radius: 0px 8px 8px 8px;
   padding: 25px;
   display: inline-block;
   width: 80%;
   background-color: #FFFFFF;
-
-
 }
+
 .recipe-contents{
   background-color: #FFFFFF;
+
+}
+.recipe-contents p{
+  padding-top: 10px;
 }
 .description {
   /* font-size: 12px; */
@@ -69,12 +98,16 @@ ul{
   color: white;
 }
 .variation-tabs{
+  display: flex;
+  flex-wrap: wrap-reverse;
   margin-top: 20px;
+  width:80%;
+
 }
 .tab{
   background-color: #FFFFFF;
   padding: 5px;
-  display: inline;
+  display: inline-block;
   border-style: solid;
   border-width: 2px;
   border-color: #607D8B;
@@ -90,14 +123,5 @@ ul{
 .index-tile{
     border-color: #90A4AE;
     background-color: #FFFFFF;
-}
-button{
-  background-color: #607D8B;
-  color: #000000;
-  margin: 5px;
-
-}
-button:hover{
-  background-color: #506874;
-  color: white;
+    text-align: center;
 }

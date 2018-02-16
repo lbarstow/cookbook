@@ -81,6 +81,7 @@ class RecipeShowContainer extends Component {
   handleFormSubmit(event){
     event.preventDefault();
     console.log("submit")
+    console.log(this.state.changes)
     let formPayload =
       {body: this.state.currentRecipe.body,
       title: this.state.currentRecipe.title,
@@ -216,7 +217,10 @@ class RecipeShowContainer extends Component {
   }
 
   render(){
+    console.log("current")
     console.log(this.state.currentRecipe)
+    console.log("selected")
+    console.log(this.state.selectedId)
     let errorHTML = this.state.errors.map((error, index) => {
       return <li key={index}>{error}</li>
     });

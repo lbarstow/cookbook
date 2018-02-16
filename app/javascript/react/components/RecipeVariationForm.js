@@ -3,29 +3,40 @@ import React from 'react'
 const RecipeVariationForm = (props) => {
   return (
     <form onSubmit={props.onClick}>
-      <label>Title:</label>
+
+      <label>Title:
       <input
         type="text"
         name="title"
         value={props.title}
         onChange={props.handleChange}
         />
-      <label>Servings Made:</label>
+        </label>
+      <div className="row">
+      <div className="small-4 columns">
+      <label>Servings Made:
       <input
+
         type="text"
         name="servings_made"
         value={props.servings}
         onChange={props.handleChange}
       />
+      </label>
+      </div>
+      <div className="small-8 columns">
       <label>
         Source:
         <input
+          className="small-3-columns"
           type="text"
           name="source"
           value={props.source}
           onChange={props.handleChange}
         />
       </label>
+      </div>
+      </div>
       <label>
         Description:
         <input
