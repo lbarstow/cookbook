@@ -66,7 +66,7 @@ class RecipeShowContainer extends Component {
     //used for storing the contents of each field- unchanged or not
     recipe[field] = val;
     //used for storing only the fields that have been changed
-    let newChange = this.state.changes;
+    let newChange = JSON.parse(JSON.stringify(this.state.changes));
     let originalVal = this.state.recipes.find((item) =>
       (item.id === this.state.selectedId)
     )
@@ -131,12 +131,11 @@ class RecipeShowContainer extends Component {
   }
 
   submitEdit(event){
-    console.log(this.state.changes);
     event.preventDefault();
-    let formPayload = this.state.changes;
+    let formPayload = JSON.parse(JSON.stringify(this.state.changes));
     let errors = [];
     let id = this.state.selectedId;
-    if (Object.keys(this.state.changes).length === 0){
+    if (Object.keys(formPayload).length === 0){
       errors.push("No Changes to Submit")
     }
     if (formPayload.body === null || formPayload.body === ''){
@@ -174,7 +173,7 @@ class RecipeShowContainer extends Component {
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     } else {
-      this.setState({ errors: errors})
+      this.setState({errors: errors})
     }
   }
 
