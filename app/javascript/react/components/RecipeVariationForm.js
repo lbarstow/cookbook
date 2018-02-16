@@ -6,6 +6,7 @@ const RecipeVariationForm = (props) => {
 
       <label>Title:
       <input
+        placeholder="Title"
         type="text"
         name="title"
         value={props.title}
@@ -41,6 +42,7 @@ const RecipeVariationForm = (props) => {
           onChange={props.handleChange}
         />
       <textarea
+        placeholder="Ingredients And Steps"
         rows="7"
         name="body"
         value={props.body}
