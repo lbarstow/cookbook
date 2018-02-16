@@ -14,38 +14,32 @@ const RecipeVariationForm = (props) => {
         </label>
       <div className="row">
       <div className="small-4 columns">
-      <label>Servings Made:
-      <input
-
-        type="text"
-        name="servings_made"
-        value={props.servings}
-        onChange={props.handleChange}
-      />
-      </label>
+        <input
+          placeholder="Add Servings Made"
+          type="text"
+          name="servings_made"
+          value={props.servings}
+          onChange={props.handleChange}
+        />
       </div>
       <div className="small-8 columns">
-      <label>
-        Source:
         <input
+          placeholder="Add A Source"
           className="small-3-columns"
           type="text"
           name="source"
           value={props.source}
           onChange={props.handleChange}
         />
-      </label>
       </div>
       </div>
-      <label>
-        Description:
         <input
+          placeholder="Add a Description"
           type="text"
           name="description"
           value={props.description}
           onChange={props.handleChange}
         />
-      </label>
       <textarea
         rows="7"
         name="body"
