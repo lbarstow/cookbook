@@ -15,11 +15,28 @@
  *= require foundation_and_overrides
 
  */
+ html{
+   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+ }
 body {
-  /* background-color: #E1E8E7; */
-  background-color: #DCE3E7;
-  font-family: garamond;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
+body::before{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url('boards.jpg');
+    background-attachment: scroll;
+    background-size: 100%;
+    opacity: .3;
+    content: "";
+    z-index: -1;
+  }
+
 h1 {
   /* color: #4D9F93; */
   text-align: center;
@@ -39,35 +56,35 @@ span{
   padding-right: 4px;
 }
 button{
-  background-color: #607D8B;
+  background-color: #90c0da;
   color: #000000;
   margin: 5px;
+  border-radius: 8px;
 
 }
 button:hover{
-  background-color: #506874;
+  background-color: #b6d6e7;
   color: white;
 }
 .button{
-  background-color: #607D8B;
+  background-color: #90c0da;
   color: #000000;
   margin: 5px;
+  border-radius: 8px;
 
 }
 .button:hover{
-  background-color: #506874;
+  background-color: #b6d6e7;
   color: white;
 }
 .recipe-show-pane {
-  /* border-color: #7393A7; */
-  border-color: #607D8B;
+  border-color: #90c0da;
   border-width: 16px;
   border-style: solid;
-  /* border-color: #4D9F93; */
   border-radius: 0px 8px 8px 8px;
   padding: 25px;
   display: inline-block;
-  width: 80%;
+  /* width: 80%; */
   background-color: #FFFFFF;
 }
 
@@ -88,20 +105,20 @@ button:hover{
   /* background-color: #6C737E; */
 }
 .variation-button{
-  background-color: #607D8B;
+  background-color: #90c0da;
   color: #000000;
   margin: 5px;
 
 }
 .variation-button:hover {
-  background-color: #506874;
+  background-color: #b6d6e7;
   color: white;
 }
 .variation-tabs{
   display: flex;
   flex-wrap: wrap-reverse;
   margin-top: 20px;
-  width:80%;
+  /* width:80%; */
 
 }
 .tab{
@@ -110,18 +127,28 @@ button:hover{
   display: inline-block;
   border-style: solid;
   border-width: 2px;
-  border-color: #607D8B;
+  border-color: #90c0da;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px
 }
 .tab.selected {
-  background-color: #607D8B;
+  background-color: #90c0da;
+}
+.tab.empty {
+  width: 60px;
+  height: 30px;
+  background-color: #90c0da;
 }
 .index-list{
   list-style: none;
 }
 .index-tile{
-    border-color: #90A4AE;
+    border-color: #90c0da;
     background-color: #FFFFFF;
+    border-width: thick;
     text-align: center;
+    border-radius: 8px;
+}
+form .button{
+  border-radius: 8px;
 }

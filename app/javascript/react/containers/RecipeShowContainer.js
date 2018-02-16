@@ -287,7 +287,7 @@ class RecipeShowContainer extends Component {
         />)
     })
     return(
-      <div className="recipe-show-container">
+      <div className="recipe-show-container small-11 columns small-centered">
         <div className="variation-tabs">
           {tabs}
         </div>

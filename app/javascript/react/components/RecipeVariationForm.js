@@ -47,6 +47,7 @@ const RecipeVariationForm = (props) => {
         />
       </label>
       <textarea
+        rows="7"
         name="body"
         value={props.body}
         onChange={props.handleChange}
