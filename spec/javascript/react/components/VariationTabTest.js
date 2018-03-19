@@ -33,6 +33,4 @@ describe('VariationTab', () => {
     expect(wrapper.find('div').length).toEqual(1);
     expect(wrapper.find('div').text()).toBe("Banana Bread");
   });
-
-
 })

@@ -228,6 +228,18 @@ class RecipeShowContainer extends Component {
     if (this.state.readOnly){
       showPane=
       <div className="recipe-show-pane">
+        <a href="/">
+          <button className="variation-button" >
+            Back to Recipes
+          </button>
+        </a>
+        <button className="variation-button" onClick={this.addVariation}>
+          Create A Variation
+        </button>
+        {this.state.currentRecipe.author_id === this.state.uID &&
+        <button className="variation-button" onClick={this.editVariation}>
+          Edit this Version
+        </button>}
         <RecipeShowPane
           title={this.state.currentRecipe.title}
           servings={this.state.currentRecipe.servings_made}
@@ -237,13 +249,6 @@ class RecipeShowContainer extends Component {
           date={this.state.currentRecipe.date}
           author={this.state.currentRecipe.author}
         />
-        <button className="variation-button" onClick={this.addVariation}>
-          Create A Variation
-        </button>
-        {this.state.currentRecipe.author_id === this.state.uID &&
-          <button className="variation-button" onClick={this.editVariation}>
-          Edit this Version
-        </button>}
       </div>
 
     }else{
