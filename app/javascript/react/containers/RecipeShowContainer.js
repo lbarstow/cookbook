@@ -225,6 +225,7 @@ class RecipeShowContainer extends Component {
     });
 
     let showPane;
+    let edit
     if (this.state.readOnly){
       showPane=
       <div className="recipe-show-pane">
@@ -237,7 +238,7 @@ class RecipeShowContainer extends Component {
         <button className="variation-button" onClick={this.addVariation}>
           Create A Variation
         </button>}
-        {this.state.currentRecipe.author_id === this.state.uID &&
+        {((this.state.currentRecipe.author_id === this.state.uID) && this.state.uID) &&
         <button className="variation-button" onClick={this.editVariation}>
           Edit this Version
         </button>}
