@@ -233,9 +233,10 @@ class RecipeShowContainer extends Component {
             Back to Recipes
           </button>
         </a>
+        {this.state.uID &&
         <button className="variation-button" onClick={this.addVariation}>
           Create A Variation
-        </button>
+        </button>}
         {this.state.currentRecipe.author_id === this.state.uID &&
         <button className="variation-button" onClick={this.editVariation}>
           Edit this Version
