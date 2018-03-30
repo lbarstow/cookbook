@@ -110,9 +110,7 @@ button:hover{
 .top-bar{
   /* background-color: #6C737E; */
 }
-.right{
-  /* background-color: #6C737E; */
-}
+
 .variation-button{
   background-color: #90c0da;
   color: #000000;
@@ -157,6 +155,7 @@ button:hover{
     border-width: thick;
     text-align: center;
     border-radius: 8px;
+
 }
 form .button{
   border-radius: 8px;
