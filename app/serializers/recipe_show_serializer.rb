@@ -12,6 +12,11 @@ class RecipeShowSerializer < ActiveModel::Serializer
   end
 
   def user
-    return current_user.id.to_i
+    if !current_user.nil?
+      return current_user.id.to_i
+    else
+      return nil
+    end
   end
+  
 end
