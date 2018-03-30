@@ -3,7 +3,16 @@
   <ul class="index-list small-block-grid-1 large-block-grid-3">
     <%@recipes.each do |recipe|%>
       <li><%= link_to(recipe_path(recipe)) do %>
-        <div class="panel index-tile"><h4><%=recipe.title%></h4></div>
+        <div class="panel index-tile">
+          <h4><%=recipe.title%></h4>
+          <%if recipe.variations.count >1%>
+            <h6><%=recipe.variations.count%> Variations</h6>
+          <%elsif recipe.variations.count == 1%>
+            <h6><%=recipe.variations.count%> Variation</h6>
+          <%else%>
+            <h6>No Variations</h6>
+          <%end%>
+        </div>
       <% end %>
       </li>
     <%end%>
