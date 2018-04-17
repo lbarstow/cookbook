@@ -36,6 +36,19 @@ body::before{
     content: "";
     z-index: -1;
   }
+  .parallax {
+    /* The image used */
+    background-image: url("breakfast.jpg");
+
+    /* Set a specific height */
+    height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 h1 {
   /* color: #4D9F93; */
@@ -159,4 +172,12 @@ button:hover{
 }
 form .button{
   border-radius: 8px;
+}
+.welcome{
+  width: 25%;
+  margin: auto;
+  background-color: #333333;
+  padding: 10px;
+  color: #FFFFFF;
+  text-align: center;
 }
