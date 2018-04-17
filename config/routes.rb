@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'recipes#index'
+  root 'homes#index'
   devise_for :users
   resources :recipes, only: [:index, :show, :new, :create]
   namespace :api do
