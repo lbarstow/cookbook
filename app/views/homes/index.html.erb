@@ -1,12 +1,26 @@
-<div class="parallax">
-  <div class="welcome">
-    Welcome to My Cookbook
+<!-- https://www.w3schools.com/howto/howto_css_parallax.asp -->
+<div class="splash">
+  <div class="parallax">
+    <div class="welcome">
+      Welcome to My Cookbook
+    </div>
+  </div>
+  <div class="intro-text">
+    <p>
+      This website allows you to add your recipes and view recipes written
+      by other users. If you want to tweak a recipe without losing the original
+      version, feel free to add a new variation. Don't worry; you're the only one
+      who can edit the versions you write.
+    </p>
+  </div>
+  <div class="parallax">
+  </div>
+  <div class="intro-text">
+    <%= link_to(recipes_path) do %>
+      <button class="button" type="button">View Recipes</button>
+    <% end %>
+    <%= link_to(new_recipe_path) do %>
+      <button class="button" type="button">Add A New Recipe</button>
+    <% end %>
   </div>
 </div>
-<%= link_to(recipes_path) do %>
-  <button class="button" type="button">View Recipes</button>
-<% end %>
-
-<%= link_to(new_recipe_path) do %>
-  <button class="button" type="button">Add A New Recipe</button>
-<% end %>

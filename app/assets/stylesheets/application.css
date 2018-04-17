@@ -15,10 +15,9 @@
  *= require foundation_and_overrides
 
  */
- html{
-   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-
- }
+html{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
 body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
@@ -35,6 +34,10 @@ body::before{
     opacity: .3;
     content: "";
     z-index: -1;
+
+  }
+  .splash{
+    text-align: center;
   }
   .parallax {
     /* The image used */
@@ -48,6 +51,21 @@ body::before{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0px;
+}
+.parallax-lunch {
+  /* The image used */
+  background-image: url("lunch.jpg");
+
+  /* Set a specific height */
+  height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0px;
 }
 
 h1 {
@@ -168,16 +186,32 @@ button:hover{
     border-width: thick;
     text-align: center;
     border-radius: 8px;
-
 }
 form .button{
   border-radius: 8px;
 }
-.welcome{
-  width: 25%;
-  margin: auto;
+.intro-text{
   background-color: #333333;
-  padding: 10px;
+  opacity: 0.9;
   color: #FFFFFF;
   text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.intro-text p{
+  margin: auto;
+  text-align: left;
+  width: 500px;
+}
+.welcome{
+  position: absolute;
+  left: 25%;
+  top: 250px;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  background-color: #333333;
+  opacity: 0.9;
+  color: #FFFFFF;
+  font-size: 40px;
 }
