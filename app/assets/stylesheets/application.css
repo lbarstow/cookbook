@@ -165,11 +165,20 @@ button:hover{
   list-style: none;
 }
 .index-tile{
+  height: 90px;
     border-color: #90c0da;
     background-color: #FFFFFF;
     border-width: thick;
     text-align: center;
     border-radius: 8px;
+}
+.new-tile{
+  height: 90px;
+    background-color: #90c0da;
+    text-align: center;
+    border-radius: 8px;
+    border-width: thick;
+    border-color: #90c0da;
 }
 form .button{
   border-radius: 8px;
