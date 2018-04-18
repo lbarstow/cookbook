@@ -119,12 +119,6 @@ button:hover{
 .recipe-contents p{
   padding-top: 10px;
 }
-.description {
-  /* font-size: 12px; */
-}
-.top-bar{
-  /* background-color: #6C737E; */
-}
 
 .variation-button{
   background-color: #90c0da;
@@ -165,11 +159,20 @@ button:hover{
   list-style: none;
 }
 .index-tile{
+    height: 90px;
     border-color: #90c0da;
     background-color: #FFFFFF;
     border-width: thick;
     text-align: center;
     border-radius: 8px;
+}
+.new-tile{
+    height: 90px;
+    background-color: #90c0da;
+    text-align: center;
+    border-radius: 8px;
+    border-width: thick;
+    border-color: #90c0da;
 }
 form .button{
   border-radius: 8px;
@@ -180,18 +183,21 @@ form .button{
   text-align: center;
   padding-top: 100px;
   padding-bottom: 100px;
+  width: 100%;
 }
 .intro-text p{
   margin: auto;
   text-align: left;
   text-indent: 2em;
-  width: 500px;
+  max-width: 600px;
   padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .welcome{
   position: sticky;
   left: 25%;
-  top: 250px;
+  top: 200px;
   width: 50%;
   margin: auto;
   text-align: center;
