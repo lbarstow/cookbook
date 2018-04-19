@@ -16,12 +16,11 @@
       <% end %>
       </li>
     <%end%>
-    <li>
-      <%= link_to(new_recipe_path) do %>
-      <div class="panel new-tile">
-        <h4>Add A New Recipe</h4>
-      </div>
-      <% end %>
-    </li>
   </ul>
+</div>
+
+<div class="small-centered small-2 columns">
+<%= link_to(new_recipe_path) do %>
+<button class="button" type="button">Add A New Recipe</button>
+<% end %>
 </div>
