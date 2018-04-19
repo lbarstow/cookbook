@@ -2,25 +2,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/lbarstow/cookbook/badge.svg?branch=master)](https://coveralls.io/github/lbarstow/cookbook?branch=master)
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a cookbook website designed to allow users to share recipes and  add variations.
+
+
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Rails 5.1.4
