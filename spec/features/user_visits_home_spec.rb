@@ -4,7 +4,7 @@ feature 'splash page', %Q{
   As a user visiting i will see a splash page when i visit the website
 } do
   # Acceptance Criteria
-  # * If I'm signed in, I have an option to sign out
+  # * If I'm signed in, I have an option to add a new recipe
   # * When I opt to sign out, I get a confirmation that my identity has been
   #   forgotten on the machine I'm using
 
@@ -15,7 +15,10 @@ feature 'splash page', %Q{
     expect(page).to have_content('View Recipes')
     expect(page).not_to have_content('Add A New Recipe')
 
+    click_link("View Recipes")
+    expect(page).to have_current_path(recipes_path)
   end
+
   scenario 'authenticated user goes root' do
     user = FactoryBot.create(:user)
     visit new_user_session_path
