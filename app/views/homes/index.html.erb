@@ -16,8 +16,10 @@
     <%= link_to(recipes_path) do %>
       <button class="button" type="button">View Recipes</button>
     <% end %>
-    <%= link_to(new_recipe_path) do %>
-      <button class="button" type="button">Add A New Recipe</button>
+    <%- if current_user -%>
+      <%= link_to(new_recipe_path) do %>
+        <button class="button" type="button">Add A New Recipe</button>
+      <% end %>
     <% end %>
   </div>
 </div>
