@@ -5,7 +5,4 @@
 This is a cookbook website designed to allow users to share recipes and  add variations.
 
 
-
-Things you may want to cover:
-
-Rails 5.1.4
+The app was built using Rails 5.1.4
