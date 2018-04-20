@@ -3,6 +3,13 @@
     <div class="tab empty"></div>
   </div>
   <div class="panel recipe-show-pane">
+    <% if @recipe.errors.any? %>
+      <ul class="errors">
+        <% @recipe.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <%= form_for(@recipe) do |f| %>
       <div class="row">
       <div class="field small-centered small-7 columns">
@@ -28,4 +35,5 @@
       </div>
     <% end %>
   </div>
+
 </div>
