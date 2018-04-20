@@ -229,7 +229,7 @@ class RecipeShowContainer extends Component {
     if (this.state.readOnly){
       showPane=
       <div className="recipe-show-pane">
-        <a href="/">
+        <a href="/recipes">
           <button className="variation-button" >
             Back to Recipes
           </button>
