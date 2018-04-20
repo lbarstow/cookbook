@@ -1,0 +1,36 @@
+require 'rails_helper'
+
+feature 'splash page', %Q{
+  As a user visiting i will see a splash page when i visit the website
+} do
+  # Acceptance Criteria
+  # * If I'm signed in, I have an option to sign out
+  # * When I opt to sign out, I get a confirmation that my identity has been
+  #   forgotten on the machine I'm using
+
+  scenario 'unauthenticated user goes root' do
+    visit root_path
+
+    expect(page).to have_content('Welcome to My Cookbook')
+    expect(page).to have_content('View Recipes')
+    expect(page).not_to have_content('Add A New Recipe')
+
+  end
+  scenario 'authenticated user goes root' do
+    user = FactoryBot.create(:user)
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+
+    visit root_path
+
+    expect(page).to have_content('Welcome to My Cookbook')
+    expect(page).to have_content('View Recipes')
+    expect(page).to have_content('Add A New Recipe')
+
+  end
+
+
+
+end

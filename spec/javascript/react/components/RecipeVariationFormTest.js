@@ -48,7 +48,6 @@ describe('RecipeVariationForm', () => {
   it('should have the body textarea', () => {
     const bodyParagraph = wrapper.find('textarea').at(0);
     expect(bodyParagraph.text()).toBe("pour water into a glass \u000A Add Ice");
-
   });
 
 })
