@@ -3,7 +3,6 @@ import React from 'react'
 const RecipeVariationForm = (props) => {
   return (
     <form onSubmit={props.onClick}>
-
       <label>Title:
       <input
         placeholder="Title"
