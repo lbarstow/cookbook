@@ -45,6 +45,11 @@ feature 'user signs in', %Q{
     expect(page).to have_selector('form', count: 1)
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Body can't be blank")
+    fill_in 'Title', with: "My Recipe"
+    click_button("Submit")
+    expect(page).to have_selector('form', count: 1)
+    expect(page).not_to have_content("Title can't be blank")
+    expect(page).to have_content("Body can't be blank")
 
   end
 
