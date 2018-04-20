@@ -5,8 +5,7 @@ feature 'splash page', %Q{
 } do
   # Acceptance Criteria
   # * If I'm signed in, I have an option to add a new recipe
-  # * When I opt to sign out, I get a confirmation that my identity has been
-  #   forgotten on the machine I'm using
+
 
   scenario 'unauthenticated user goes root' do
     visit root_path
