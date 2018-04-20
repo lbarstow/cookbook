@@ -22,11 +22,13 @@ feature 'user signs in', %Q{
     expect(page).to have_current_path(new_recipe_path)
     expect(page).to have_selector('form', count: 1)
     expect(page).to have_selector('textarea', count: 1)
+    expect(page).to have_button("Submit")
 
     fill_in 'Title', with: "My Recipe"
     fill_in 'Ingredients and Steps', with: "Recipe Body"
-
-    expect(page).to have_button("Submit")
+    click_button("Submit")
+    expect(page).not_to have_current_path(new_recipe_path)
+    expect(page).to have_content("Your recipe has been added.")
 
   end
 
