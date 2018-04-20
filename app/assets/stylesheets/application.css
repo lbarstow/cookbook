@@ -67,6 +67,12 @@ ul{
   list-style: none;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+.errors{
+  text-align: center;
+}
+.errors li{
+  color: red;
+}
 
 .recipe-show-contianer{
   display: inline-block;
