@@ -11,7 +11,7 @@ feature 'user signs in', %Q{
     expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 
-  scenario 'authenticated user can add recipe' do
+  scenario 'authenticated user can add recipe with title and body' do
     user = FactoryBot.create(:user)
     visit new_user_session_path
     fill_in 'Email', with: user.email
@@ -20,8 +20,29 @@ feature 'user signs in', %Q{
 
     visit new_recipe_path
     expect(page).to have_current_path(new_recipe_path)
+    expect(page).to have_selector('form', count: 1)
+    expect(page).to have_selector('textarea', count: 1)
+
+    fill_in 'Title', with: "My Recipe"
+    fill_in 'Ingredients and Steps', with: "Recipe Body"
 
     expect(page).to have_button("Submit")
+
   end
+
+  scenario 'unsuccessfully add recipe' do
+    user = FactoryBot.create(:user)
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+
+    visit new_recipe_path
+
+    click_button("Submit")
+    expect(page).to have_selector('form', count: 1)
+  end
+
+
 
 end
