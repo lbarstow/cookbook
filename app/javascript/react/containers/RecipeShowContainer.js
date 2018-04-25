@@ -214,18 +214,12 @@ class RecipeShowContainer extends Component {
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-
   render(){
-    console.log("current")
-    console.log(this.state.currentRecipe)
-    console.log("selected")
-    console.log(this.state.selectedId)
     let errorHTML = this.state.errors.map((error, index) => {
       return <li key={index}>{error}</li>
     });
-
     let showPane;
-    let edit
+    let edit;
     if (this.state.readOnly){
       showPane=
       <div className="recipe-show-pane">
