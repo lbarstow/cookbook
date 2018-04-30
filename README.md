@@ -4,4 +4,4 @@
 
 This is a cookbook website designed to allow verified users to upload and share recipes and  add variations.
 
-This is a ruby on rails (version 5.1.4) app which uses react to render the recipe content.
+This is a ruby on rails (version 5.1.4) app which uses React to render the recipe content.
